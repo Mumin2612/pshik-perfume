@@ -1,12 +1,12 @@
 :root {
-    --bg-outer: #1E2522;         /* Глубокий темно-зеленый фон вокруг «телефона» */
-    --bg-phone: #F4F6F5;         /* Мягкий светлый фон приложения (не чисто белый, приятный глазу) */
-    --card-bg: #2A3430;          /* Дорогой темно-зеленый цвет хаки/болотный для карточек */
+    --bg-outer: #141816;         /* Очень тёмный, почти чёрный графит для фона вокруг смартфона */
+    --bg-phone: #DCDEDB;         /* Мягкий дымчатый серо-кремовый фон приложения (вместо белого) */
+    --card-bg: #222B27;          /* Глубокий болотный хаки для карточек */
     --primary-color: #C6A15B;    /* Матовое золото для цен и активных элементов */
-    --text-on-card: #FFFFFF;     /* Белый цвет текста внутри темных карточек */
-    --text-muted-card: #A3B1AA;  /* Приглушенный серо-зеленый для описания ароматов */
-    --text-main: #1A211E;        /* Темный цвет для главного заголовка приложения */
-    --border-color: #35423D;     /* Границы элементов внутри карточек */
+    --text-on-card: #FFFFFF;     /* Белый текст внутри карточек */
+    --text-muted-card: #A3B1AA;  /* Серо-зелёный приглушённый для описаний духов */
+    --text-main: #1A211E;        /* Тёмный цвет для главного заголовка */
+    --border-color: #2F3B36;     /* Внутренние границы элементов */
 }
 
 /* Сброс базовых отступов */
@@ -31,12 +31,12 @@ body {
     max-width: 480px;
     min-height: 100vh;
     padding: 16px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* Мобильный заголовок приложения */
 h1 {
-    color: var(--bg-outer);
+    color: #222B27;
     text-align: center;
     font-size: 22px;
     margin: 10px 0 2px 0;
@@ -48,7 +48,7 @@ h1 {
 .subtitle {
     text-align: center;
     font-size: 12px;
-    color: #7A8A82;
+    color: #5A6660;
     margin: 0 0 20px 0;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -62,7 +62,7 @@ h1 {
     margin-top: 15px;
 }
 
-/* Элегантная темная карточка хаки на светлом фоне */
+/* Элегантная темная карточка хаки */
 .card {
     background-color: var(--card-bg);
     color: var(--text-on-card);
@@ -72,14 +72,13 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
     border: none;
-    box-shadow: 0 4px 12px rgba(42, 52, 48, 0.12);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Эффект при наведении на карточку */
 .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(42, 52, 48, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Картинка товара */
@@ -105,7 +104,7 @@ h1 {
     margin: 0 0 12px 0;
 }
 
-/* Селектор объема внутри карточки */
+/* Селектор объема */
 .volume-selector {
     display: flex;
     gap: 4px;
@@ -119,7 +118,7 @@ h1 {
     font-weight: 600;
     border-radius: 6px;
     border: 1px solid var(--border-color);
-    background-color: rgba(255, 255, 255, 0.03);
+    background-color: rgba(255, 255, 255, 0.02);
     color: var(--text-muted-card);
     cursor: pointer;
     transition: all 0.2s ease;
@@ -130,11 +129,11 @@ h1 {
     color: var(--primary-color);
 }
 
-/* Выбранный объем подсвечивается золотом */
+/* Выбранный объем */
 .vol-btn.active {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-    color: #1E2522; /* Темный текст на золоте для читаемости */
+    color: #141816;
     transform: scale(1.02);
 }
 
@@ -143,7 +142,7 @@ h1 {
     font-size: 16px;
     font-weight: 800;
     margin-bottom: 10px;
-    color: var(--primary-color); /* Золотая цена ярко горит на темном фоне карточки */
+    color: var(--primary-color);
 }
 
 /* Кнопка «Купить» */
@@ -161,19 +160,17 @@ h1 {
     transition: all 0.2s ease;
 }
 
-/* При наведении кнопка заливается золотом */
 .buy-btn:hover {
     background-color: var(--primary-color);
-    color: #1E2522;
+    color: #141816;
     box-shadow: 0 4px 12px rgba(198, 161, 91, 0.2);
 }
 
-/* Физический клик */
 .buy-btn:active, .vol-btn:active {
     transform: scale(0.96);
 }
 
-/* Полноэкранная корзина (сделаем её тоже светлой в тон приложения) */
+/* Полноэкранная корзина под тон приложения */
 .overlay {
     display: none;             
     position: fixed;
@@ -186,7 +183,7 @@ h1 {
     background-color: var(--bg-phone);
     z-index: 9999;
     padding: 16px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     animation: slideUp 0.25s ease-out; 
 }
 
@@ -200,7 +197,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    border-bottom: 1px solid #E2E6E4;
+    border-bottom: 1px solid #C0C2C0;
     padding-bottom: 10px;
 }
 
@@ -208,7 +205,7 @@ h1 {
     background: transparent;
     border: none;
     font-size: 24px;
-    color: #7A8A82;
+    color: #5A6660;
     cursor: pointer;
     transition: color 0.2s ease;
 }
