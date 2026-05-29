@@ -1,110 +1,223 @@
 :root {
-    --bg-color: #FBD394;          /* Мягкий богатый песочный фон */
-    --card-bg: #FFFFFF;           /* Чистый белый для контраста карточек */
-    --accent-color: #703800;      /* Глубокий шоколадный для кнопок и акцентов */
-    --text-main: #201000;         /* Почти чёрный с тёплым коричневым оттенком */
-    --text-muted: #605040;        /* Приглушённый коричневый для описания */
+    --bg-outer: #1E2522;         /* Глубокий темно-зеленый фон вокруг «телефона» */
+    --bg-phone: #F4F6F5;         /* Мягкий светлый фон приложения (не чисто белый, приятный глазу) */
+    --card-bg: #2A3430;          /* Дорогой темно-зеленый цвет хаки/болотный для карточек */
+    --primary-color: #C6A15B;    /* Матовое золото для цен и активных элементов */
+    --text-on-card: #FFFFFF;     /* Белый цвет текста внутри темных карточек */
+    --text-muted-card: #A3B1AA;  /* Приглушенный серо-зеленый для описания ароматов */
+    --text-main: #1A211E;        /* Темный цвет для главного заголовка приложения */
+    --border-color: #35423D;     /* Границы элементов внутри карточек */
 }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 12px;
+/* Сброс базовых отступов */
+*, *::before, *::after {
     box-sizing: border-box;
 }
 
-/* Мобильный заголовок */
-h1 {
-    color: var(--accent-color);
-    text-align: center;
-    font-size: 24px;
-    margin: 15px 0 5px 0;
-    font-weight: 800;
-    text-transform: uppercase;
+body {
+    background-color: var(--bg-outer);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
-/* Контейнер каталога — строго в одну колонку на весь экран телефона */
+/* Главный контейнер смартфона */
+.app-container {
+    background-color: var(--bg-phone);
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    padding: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Мобильный заголовок приложения */
+h1 {
+    color: var(--bg-outer);
+    text-align: center;
+    font-size: 22px;
+    margin: 10px 0 2px 0;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 12px;
+    color: #7A8A82;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Каталог в два ряда */
 #catalog {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
     margin-top: 15px;
 }
 
-/* Полноразмерная мобильная карточка */
+/* Элегантная темная карточка хаки на светлом фоне */
 .card {
     background-color: var(--card-bg);
-    border-radius: 16px;
-    padding: 16px;
+    color: var(--text-on-card);
+    border-radius: 14px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 12px rgba(112, 56, 0, 0.1);
+    justify-content: space-between;
+    border: none;
+    box-shadow: 0 4px 12px rgba(42, 52, 48, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* Эффект при наведении на карточку */
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(42, 52, 48, 0.25);
+}
+
+/* Картинка товара */
 .card img {
     width: 100%;
-    height: auto;
-    border-radius: 12px;
+    height: 120px;
+    border-radius: 10px;
     object-fit: cover;
+    margin-bottom: 10px;
 }
 
 .card h3 {
-    font-size: 18px;
-    margin: 12px 0 6px 0;
+    font-size: 14px;
+    margin: 0 0 4px 0;
+    font-weight: 700;
+    letter-spacing: 0.3px;
 }
 
 .card .desc {
-    color: var(--text-muted);
-    font-size: 14px;
-    line-height: 1.4;
-    margin-bottom: 12px;
+    color: var(--text-muted-card);
+    font-size: 11px;
+    line-height: 1.3;
+    margin: 0 0 12px 0;
 }
 
-/* Выбор объёма — крупные кнопки в ряд */
+/* Селектор объема внутри карточки */
 .volume-selector {
     display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
+    gap: 4px;
+    margin-bottom: 10px;
 }
 
 .vol-btn {
     flex: 1;
-    background: #F5EFE6;
-    border: 1px solid #E6DBC9;
-    color: var(--text-main);
-    padding: 10px 0;
-    font-size: 14px;
+    padding: 6px 0;
+    font-size: 11px;
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--text-muted-card);
     cursor: pointer;
-    text-align: center;
+    transition: all 0.2s ease;
 }
 
+.vol-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Выбранный объем подсвечивается золотом */
 .vol-btn.active {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    color: #FFFFFF;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #1E2522; /* Темный текст на золоте для читаемости */
+    transform: scale(1.02);
 }
 
-/* Крупная мобильная цена */
+/* Цена */
 .price-tag {
-    color: var(--accent-color);
-    font-weight: 700;
-    font-size: 20px;
-    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: var(--primary-color); /* Золотая цена ярко горит на темном фоне карточки */
 }
 
-/* Длинная, жирная кнопка добавления под большой палец */
+/* Кнопка «Купить» */
 .buy-btn {
-    background-color: var(--accent-color);
-    color: #FFFFFF;
-    border: none;
-    padding: 14px;
-    font-size: 16px;
+    padding: 10px;
+    font-size: 13px;
     font-weight: 700;
-    border-radius: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--primary-color);
+    background-color: transparent;
+    color: var(--primary-color);
     cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+/* При наведении кнопка заливается золотом */
+.buy-btn:hover {
+    background-color: var(--primary-color);
+    color: #1E2522;
+    box-shadow: 0 4px 12px rgba(198, 161, 91, 0.2);
+}
+
+/* Физический клик */
+.buy-btn:active, .vol-btn:active {
+    transform: scale(0.96);
+}
+
+/* Полноэкранная корзина (сделаем её тоже светлой в тон приложения) */
+.overlay {
+    display: none;             
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%); 
     width: 100%;
+    max-width: 480px;          
+    height: 100vh;
+    background-color: var(--bg-phone);
+    z-index: 9999;
+    padding: 16px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.25s ease-out; 
+}
+
+@keyframes slideUp {
+    from { transform: translate(-50%, 100%); }
+    to { transform: translate(-50%, 0); }
+}
+
+.overlay-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #E2E6E4;
+    padding-bottom: 10px;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #7A8A82;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+    color: var(--text-main);
+}
+
+.cart-list {
+    overflow-y: auto;
+    height: calc(100vh - 200px); 
 }

@@ -5,23 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>MUS'AB PARFUME</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=premium_modern">
 </head>
 <body>
     <div class="app-container">
         <header>
             <h1 class="logo">Pshik Perfume</h1>
             <p class="tagline">Premium Oils • Mosscow</p>
+            <button id="open-cart-btn" class="buy-btn" style="margin-bottom: 15px;">🛒 Корзина (<span id="cart-count">0</span>)</button>
+
         </header>
 
         <div id="catalog" class="catalog-grid"></div>
-
-        <!-- Нижняя плашка -->
-        <div id="cart-bar" class="cart-bar" onclick="showCart()">
-            <span id="bar-count">0 шт.</span>
-            <span>ПОСМОТРЕТЬ ЗАКАЗ</span>
-            <span id="bar-total">0 zł</span>
-        </div>
 
         <!-- ПОЛНОЭКРАННАЯ ФОРМА КОРЗИНЫ -->
         <div id="cart-overlay" class="overlay">
