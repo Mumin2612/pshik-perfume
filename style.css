@@ -1,13 +1,13 @@
 :root {
     --bg-outer: #1A110B;         /* Почти чёрно-коричневый фон вокруг смартфона */
-    --bg-phone: #2C1E15;         /* Глубокий, насыщенный тёмно-коричневый фон самого приложения */
-    --card-bg: #3D2B1F;          /* Чуть более светлый шоколадный оттенок для карточек духов */
-    --primary-color: #8ECAE6;    /* Нежно-голубой / небесный цвет для кнопок и акцентов */
-    --accent-color: #219EBC;     /* Насыщенный голубой для цен и активных состояний */
-    --text-on-card: #FFFFFF;     /* Чистый белый текст для названий парфюма */
-    --text-muted-card: #D0C4BC;  /* Светлый пастельно-кремовый для описания ароматов */
-    --text-main: #FFFFFF;        /* Белый цвет для главного заголовка */
-    --border-color: #4A3528;     /* Границы кнопок внутри карточек */
+    --bg-phone: #2C1E15;         /* Насыщенный тёмно-коричневый фон самого приложения */
+    --card-bg: #E2E4E6;          /* Мягкий матовый серебристо-платиновый цвет для карточек */
+    --primary-color: #028090;    /* Глубокий бирюзово-голубой для кнопок и цен на светлом фоне */
+    --accent-color: #00A896;     /* Яркий голубой акцент для выбранных элементов */
+    --text-on-card: #1A211E;     /* Тёмный, почти чёрный текст для названий внутри светлой карточки */
+    --text-muted-card: #5A6561;  /* Приглушённый графитовый для описания ароматов */
+    --text-main: #FFFFFF;        /* Белый цвет для главного заголовка приложения */
+    --border-color: #C0C4C7;     /* Границы кнопок внутри карточки */
 }
 
 /* Сброс базовых отступов */
@@ -37,7 +37,7 @@ body {
 
 /* Мобильный заголовок приложения */
 h1 {
-    color: var(--primary-color); /* Главный заголовок теперь красиво подсвечен голубым */
+    color: #E2E4E6;              /* Заголовок под тон серебра карточек */
     text-align: center;
     font-size: 22px;
     margin: 10px 0 2px 0;
@@ -49,7 +49,7 @@ h1 {
 .subtitle {
     text-align: center;
     font-size: 12px;
-    color: var(--text-muted-card);
+    color: #D0C4BC;
     margin: 0 0 20px 0;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -63,7 +63,7 @@ h1 {
     margin-top: 15px;
 }
 
-/* Шоколадная карточка */
+/* Серебристая карточка на шоколадном фоне */
 .card {
     background-color: var(--card-bg);
     color: var(--text-on-card);
@@ -72,14 +72,14 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 1px solid rgba(255, 255, 255, 0.02);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-    transition: transform 0.25s ease, border-color 0.25s ease;
+    border: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
     transform: translateY(-3px);
-    border-color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
 /* Картинка товара */
@@ -96,7 +96,7 @@ h1 {
     margin: 0 0 4px 0;
     font-weight: 700;
     letter-spacing: 0.3px;
-    color: #FFFFFF;
+    color: var(--text-on-card);
 }
 
 .card .desc {
@@ -120,7 +120,7 @@ h1 {
     font-weight: 600;
     border-radius: 6px;
     border: 1px solid var(--border-color);
-    background-color: rgba(255, 255, 255, 0.02);
+    background-color: rgba(0, 0, 0, 0.05);
     color: var(--text-muted-card);
     cursor: pointer;
     transition: all 0.2s ease;
@@ -131,15 +131,15 @@ h1 {
     color: var(--primary-color);
 }
 
-/* Активный объем горит нежно-голубым */
+/* Активный объем заливается стильным голубым цветом */
 .vol-btn.active {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-    color: #1A110B; /* Тёмный текст для читаемости */
+    color: #FFFFFF;
     transform: scale(1.02);
 }
 
-/* Цена подсвечена насыщенным голубым */
+/* Цена */
 .price-tag {
     font-size: 16px;
     font-weight: 800;
@@ -147,7 +147,7 @@ h1 {
     color: var(--primary-color);
 }
 
-/* Кнопка «Купить» с голубым контуром */
+/* Кнопка «Купить» с контрастным контуром */
 .buy-btn {
     padding: 10px;
     font-size: 13px;
@@ -162,18 +162,18 @@ h1 {
     transition: all 0.2s ease;
 }
 
-/* При наведении кнопка полностью заливается голубым */
+/* При наведении кнопка заливается полностью */
 .buy-btn:hover {
     background-color: var(--primary-color);
-    color: #1A110B;
-    box-shadow: 0 4px 12px rgba(142, 202, 230, 0.3);
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(2, 128, 144, 0.2);
 }
 
 .buy-btn:active, .vol-btn:active {
     transform: scale(0.96);
 }
 
-/* Полноэкранная корзина */
+/* Полноэкранная корзина (оставляем в тон приложения — шоколадной) */
 .overlay {
     display: none;             
     position: fixed;
@@ -200,7 +200,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid #4A3528;
     padding-bottom: 10px;
 }
 
@@ -208,7 +208,7 @@ h1 {
     background: transparent;
     border: none;
     font-size: 24px;
-    color: var(--text-muted-card);
+    color: #D0C4BC;
     cursor: pointer;
     transition: color 0.2s ease;
 }
