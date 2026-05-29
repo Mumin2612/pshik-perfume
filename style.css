@@ -1,85 +1,110 @@
 :root {
-    --bg-color: #0E035F;          /* Глубокий синий фон сайта */
-    --card-bg: #16127B;           /* Чуть более светлый синий для карточек, чтобы они выделялись */
-    --accent-color: #C4F8FF;      /* Неоново-голубой для кнопок, цен и активных элементов */
-    --text-main: #FFFFFF;         /* Белый текст для названий и описаний */
-    --text-muted: #A5A1F5;        /* Мягкий сине-серый для второстепенного текста */
+    --bg-color: #FBD394;          /* Мягкий богатый песочный фон */
+    --card-bg: #FFFFFF;           /* Чистый белый для контраста карточек */
+    --accent-color: #703800;      /* Глубокий шоколадный для кнопок и акцентов */
+    --text-main: #201000;         /* Почти чёрный с тёплым коричневым оттенком */
+    --text-muted: #605040;        /* Приглушённый коричневый для описания */
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 12px;
+    box-sizing: border-box;
 }
 
-/* Заголовок магазина */
+/* Мобильный заголовок */
 h1 {
     color: var(--accent-color);
     text-align: center;
+    font-size: 24px;
+    margin: 15px 0 5px 0;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 20px;
 }
 
-/* Стили карточек товара */
+/* Контейнер каталога — строго в одну колонку на весь экран телефона */
+#catalog {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 15px;
+}
+
+/* Полноразмерная мобильная карточка */
 .card {
     background-color: var(--card-bg);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 16px;
-    margin: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(112, 56, 0, 0.1);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
 }
 
 .card h3 {
-    color: var(--text-main);
-    margin: 10px 0 5px 0;
+    font-size: 18px;
+    margin: 12px 0 6px 0;
 }
 
 .card .desc {
     color: var(--text-muted);
     font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 12px;
 }
 
-/* Цена */
-.price-tag {
-    color: var(--accent-color);
-    font-weight: bold;
-    font-size: 18px;
-    margin: 10px 0;
+/* Выбор объёма — крупные кнопки в ряд */
+.volume-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
 }
 
-/* Кнопки переключения объема */
 .vol-btn {
-    background: transparent;
-    border: 1px solid var(--text-muted);
+    flex: 1;
+    background: #F5EFE6;
+    border: 1px solid #E6DBC9;
     color: var(--text-main);
-    padding: 6px 12px;
-    margin-right: 5px;
-    border-radius: 6px;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
+    text-align: center;
 }
 
 .vol-btn.active {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
-    color: #000000; /* Темный текст на светлой активной кнопке */
+    color: #FFFFFF;
 }
 
-/* Главная кнопка Добавить */
+/* Крупная мобильная цена */
+.price-tag {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+/* Длинная, жирная кнопка добавления под большой палец */
 .buy-btn {
     background-color: var(--accent-color);
-    color: #000000;
+    color: #FFFFFF;
     border: none;
-    padding: 12px;
-    width: 100%;
-    border-radius: 8px;
-    font-weight: bold;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background 0.2s;
-}
-
-.buy-btn:hover {
-    background-color: #A2EFFF;
+    width: 100%;
 }
