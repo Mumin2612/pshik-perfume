@@ -1,12 +1,13 @@
 :root {
-    --bg-outer: #0F1211;         /* Почти чёрный фон вокруг смартфона */
-    --bg-phone: #3A423F;         /* Средне-тёмный дымчатый фон приложения (вместо белого) */
-    --card-bg: #1C2421;          /* Глубокий, выраженный тёмно-болотный хаки для карточек */
-    --primary-color: #D4AF37;    /* Яркое благородное золото для кнопок, цен и активных элементов */
-    --text-on-card: #FFFFFF;     /* Чистый белый текст на карточках для максимальной читаемости */
-    --text-muted-card: #9AA8A1;  /* Светлый серо-зелёный для описания ароматов */
-    --text-main: #FFFFFF;        /* Белый цвет для главного заголовка приложения */
-    --border-color: #2D3A34;     /* Границы кнопок внутри карточек */
+    --bg-outer: #1A110B;         /* Почти чёрно-коричневый фон вокруг смартфона */
+    --bg-phone: #2C1E15;         /* Глубокий, насыщенный тёмно-коричневый фон самого приложения */
+    --card-bg: #3D2B1F;          /* Чуть более светлый шоколадный оттенок для карточек духов */
+    --primary-color: #8ECAE6;    /* Нежно-голубой / небесный цвет для кнопок и акцентов */
+    --accent-color: #219EBC;     /* Насыщенный голубой для цен и активных состояний */
+    --text-on-card: #FFFFFF;     /* Чистый белый текст для названий парфюма */
+    --text-muted-card: #D0C4BC;  /* Светлый пастельно-кремовый для описания ароматов */
+    --text-main: #FFFFFF;        /* Белый цвет для главного заголовка */
+    --border-color: #4A3528;     /* Границы кнопок внутри карточек */
 }
 
 /* Сброс базовых отступов */
@@ -31,12 +32,12 @@ body {
     max-width: 480px;
     min-height: 100vh;
     padding: 16px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
 }
 
 /* Мобильный заголовок приложения */
 h1 {
-    color: var(--primary-color); /* Заголовок теперь золотой и солидный */
+    color: var(--primary-color); /* Главный заголовок теперь красиво подсвечен голубым */
     text-align: center;
     font-size: 22px;
     margin: 10px 0 2px 0;
@@ -62,7 +63,7 @@ h1 {
     margin-top: 15px;
 }
 
-/* Элегантная темная карточка хаки */
+/* Шоколадная карточка */
 .card {
     background-color: var(--card-bg);
     color: var(--text-on-card);
@@ -71,8 +72,8 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
     transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
@@ -130,15 +131,15 @@ h1 {
     color: var(--primary-color);
 }
 
-/* Выбранный объем заливается золотом */
+/* Активный объем горит нежно-голубым */
 .vol-btn.active {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-    color: #0F1211;
+    color: #1A110B; /* Тёмный текст для читаемости */
     transform: scale(1.02);
 }
 
-/* Цена */
+/* Цена подсвечена насыщенным голубым */
 .price-tag {
     font-size: 16px;
     font-weight: 800;
@@ -146,7 +147,7 @@ h1 {
     color: var(--primary-color);
 }
 
-/* Кнопка «Купить» */
+/* Кнопка «Купить» с голубым контуром */
 .buy-btn {
     padding: 10px;
     font-size: 13px;
@@ -161,17 +162,18 @@ h1 {
     transition: all 0.2s ease;
 }
 
+/* При наведении кнопка полностью заливается голубым */
 .buy-btn:hover {
     background-color: var(--primary-color);
-    color: #0F1211;
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    color: #1A110B;
+    box-shadow: 0 4px 12px rgba(142, 202, 230, 0.3);
 }
 
 .buy-btn:active, .vol-btn:active {
     transform: scale(0.96);
 }
 
-/* Полноэкранная корзина под тон приложения */
+/* Полноэкранная корзина */
 .overlay {
     display: none;             
     position: fixed;
@@ -184,7 +186,7 @@ h1 {
     background-color: var(--bg-phone);
     z-index: 9999;
     padding: 16px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
     animation: slideUp 0.25s ease-out; 
 }
 
@@ -212,7 +214,7 @@ h1 {
 }
 
 .close-btn:hover {
-    color: #FFFFFF;
+    color: var(--primary-color);
 }
 
 .cart-list {
