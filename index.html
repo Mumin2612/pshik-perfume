@@ -3,19 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Pshik PerfumeE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=chocolate_monochrome">
+    <title>Pshik Perfume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght=400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
         <header>
             <h1 class="logo">Pshik Perfume</h1>
-            <p class="tagline">Premium Oils • Mosscow</p>
-            <button id="open-cart-btn" class="buy-btn" style="margin-bottom: 15px;">🛒 Корзина (<span id="cart-count">0</span>)</button>
-
+            <p class="tagline">Premium Oils • Poland</p>
+            
+            <!-- Кнопка корзины в новом стиле -->
+            <div class="cart-btn-container">
+                <button id="open-cart-btn" class="cart-button">
+                    🛒 Корзина (<span id="cart-count">0</span>)
+                </button>
+            </div>
         </header>
 
+        <!-- Сюда JS будет рендерить карточки с префиксом PSH -->
         <div id="catalog" class="catalog-grid"></div>
 
         <!-- ПОЛНОЭКРАННАЯ ФОРМА КОРЗИНЫ -->
