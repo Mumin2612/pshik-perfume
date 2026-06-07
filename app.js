@@ -177,8 +177,11 @@ function updateUI() {
         cartCountElem.innerText = count;
     }
 
+    // Добавили max-height и overflow, чтобы длинный список товаров не выталкивал кнопку и текст вниз экрана
     const list = document.getElementById('cart-list');
     if (list) {
+        list.style.maxHeight = "40vh";
+        list.style.overflowY = "auto";
         list.innerHTML = cart.map((item, index) => `
             <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; background:#1A1A1A; padding:10px; border-radius:8px;">
                 <div class="cart-item-info">
@@ -197,7 +200,14 @@ function updateUI() {
     const overTotal = document.getElementById('overlay-total');
     if (overTotal) overTotal.innerText = `${total} ₽`;
 
-    // Нижнюю родную кнопку ТГ теперь просто принудительно гасим везде
+    // НАСТРОЙКА ОТСТУПОВ: Принудительно приподнимаем подвал корзины, чтобы текст не уходил вниз
+    const footer = document.querySelector('.checkout-footer');
+    if (footer) {
+        footer.style.paddingBottom = "40px"; // Создает безопасную зону снизу
+        footer.style.boxSizing = "border-box";
+    }
+
+    // Нижнюю родную кнопку ТГ принудительно гасим везде
     window.Telegram.WebApp.MainButton.hide();
 }
 
