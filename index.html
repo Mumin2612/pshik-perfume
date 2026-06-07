@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Pshik Perfume</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght=400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
         <header>
             <h1 class="logo">Pshik Perfume</h1>
-            <p class="tagline">Premium Oils • Poland</p>
+            <p class="tagline">Premium Oils • Russia</p>
             
-            <!-- Кнопка корзины в новом стиле -->
             <div class="cart-btn-container">
                 <button id="open-cart-btn" class="cart-button">
                     🛒 Корзина (<span id="cart-count">0</span>)
@@ -21,10 +20,8 @@
             </div>
         </header>
 
-        <!-- Сюда JS будет рендерить карточки с префиксом PSH -->
         <div id="catalog" class="catalog-grid"></div>
 
-        <!-- ПОЛНОЭКРАННАЯ ФОРМА КОРЗИНЫ -->
         <div id="cart-overlay" class="overlay">
             <div class="overlay-header">
                 <h2>Ваш заказ</h2>
@@ -32,16 +29,20 @@
             </div>
             
             <div id="cart-list" class="cart-list">
-                <!-- Сюда JS вставит товары -->
-            </div>
+                </div>
             
             <div class="checkout-footer">
                 <div class="total-row">
                     <span>Итого к оплате:</span>
-                    <span id="overlay-total">0 zł</span>
+                    <span id="overlay-total">0 ₽</span>
                 </div>
+                
+                <button id="checkout-btn" class="order-btn" style="margin-top: 15px; margin-bottom: 10px;">
+                    Оформить заказ
+                </button>
+
                 <div class="order-info">
-                    <p>После подтверждения мы свяжемся с вами в Telegram для уточнения доставки.</p>
+                    <p>После нажатия кнопки «Оформить заказ» мы свяжемся с вами в Telegram для уточнения адреса доставки.</p>
                 </div>
             </div>
         </div>
