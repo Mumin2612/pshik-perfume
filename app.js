@@ -1,8 +1,15 @@
 const products = [
-    { id: 1, name: "PERFUME #01 Inspiration", desc: "Свежий цитрусовый аромат. Твой идеальный спутник на каждый день.", img: ["https://via.placeholder.com/300/1a1a1a/D4B78F?text=Img+1", "https://via.placeholder.com/300/2c2c2c/D4B78F?text=Img+2"], prices: {10: 450, 15: 650, 30: 1100, 50: 1600} },
+    { 
+        id: 1, 
+        name: "PERFUME #01 Inspiration", 
+        desc: "Свежий цитрусовый аромат. Твой идеальный спутник на каждый день.", 
+        // Картинки перенесены сюда и готовы к карусели
+        img: ["molecula%2001.jpg", "molecule%202.jpg", "molecule%203.webp"], 
+        prices: {10: 450, 15: 650, 30: 1100, 50: 1600} 
+    },
     { id: 2, name: "PERFUME #02 Tobacco Vanille", desc: "Теплый табак и сладкая ваниль. Аромат роскоши и уверенности.", img: ["https://via.placeholder.com/300/1a1a1a/D4B78F?text=Img+1"], prices: {10: 500, 15: 750, 30: 1300, 50: 1800} },
     { id: 3, name: "PERFUME #03 Kirke Tiziana", desc: "Фруктовый коктейль с невероятным шлейфом. Хит сезона.", img: ["https://via.placeholder.com/300"], prices: {10: 450, 15: 700, 30: 1100, 50: 1700} },
-    { id: 4, name: "PERFUME #04 Molecule 02", desc: "Чистая амбра, которая раскрывается индивидуально на каждом.", img: ["molecula%2001.jpg", "molecule%202.jpg", "molecule%203.webp"], prices: {10: 550, 15: 800, 30: 1400, 50: 2000} },
+    { id: 4, name: "PERFUME #04 Molecule 02", desc: "Чистая амбра, которая раскрывается индивидуально на каждом.", img: ["https://via.placeholder.com/300"], prices: {10: 550, 15: 800, 30: 1400, 50: 2000} },
     { id: 5, name: "PERFUME #05 Molecule 02", desc: "Чистая амбра, которая раскрывается индивидуально на каждом.", img: ["https://via.placeholder.com/300"], prices: {10: 550, 15: 800, 30: 1400, 50: 2000} },
     { id: 6, name: "PERFUME #06 Molecule 02", desc: "Чистая амбра, которая раскрывается индивидуально на каждом.", img: ["https://via.placeholder.com/300"], prices: {10: 550, 15: 800, 30: 1400, 50: 2000} },
     { id: 7, name: "PERFUME #07 Molecule 02", desc: "Чистая амбра, которая раскрывается индивидуально на каждом.", img: ["https://via.placeholder.com/300"], prices: {10: 550, 15: 800, 30: 1400, 50: 2000} },
@@ -120,7 +127,6 @@ function sendPreorder() {
     const user = window.Telegram.WebApp.initDataUnsafe?.user;
     const customerName = user ? `${user.first_name} ${user.last_name || ''}`.trim() : "Не указано";
     
-    // Формируем специальный JSON-пакет, который поймет Python-бэкэнд
     const preorderData = {
         type: "preorder",
         perfume: perfumeName,
@@ -132,7 +138,7 @@ function sendPreorder() {
     hidePreorder();
 }
 
-// --- ОСТАЛЬНАЯ ЛОГИКА ТОВАРА И КОРЗИНЫ (ИСПРАВЛЕННАЯ) ---
+// --- ЛОГИКА ТОВАРА И КОРЗИНЫ ---
 function setVolume(event, id, vol) {
     selectedVolumes[id] = vol;
     const p = products.find(x => x.id === id);
@@ -191,14 +197,8 @@ function updateUI() {
     const overTotal = document.getElementById('overlay-total');
     if (overTotal) overTotal.innerText = `${total} ₽`;
 
-    const mainBtn = window.Telegram.WebApp.MainButton;
-    const overlay = document.getElementById('cart-overlay');
-    
-    if (total > 0 && overlay && overlay.style.display === 'block') {
-        mainBtn.setParams({ text: `ОФОРМИТЬ ЗАКАЗ (${total} ₽)`, is_visible: true, color: '#D4B78F', text_color: '#121212' });
-    } else {
-        mainBtn.hide();
-    }
+    // Нижнюю родную кнопку ТГ теперь просто принудительно гасим везде
+    window.Telegram.WebApp.MainButton.hide();
 }
 
 function changeQty(index, delta) {
@@ -223,24 +223,7 @@ function hideCart() {
     }
 }
 
-// Отправка обычного заказа
-window.Telegram.WebApp.onEvent('mainButtonClicked', () => {
-    const orderDetails = cart.map(item => `• ${item.name} (${item.vol}ml) x${item.qty}`).join('\n');
-    const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-    const totalPriceString = `${total} ₽`;
-    const user = window.Telegram.WebApp.initDataUnsafe?.user;
-    const customerName = user ? `${user.first_name} ${user.last_name || ''}`.trim() : "Не указано";
-
-    const dataToSend = {
-        type: "order",
-        order: orderDetails,
-        total: totalPriceString,
-        customer: customerName
-    };
-
-    window.Telegram.WebApp.sendData(JSON.stringify(dataToSend));
-});
-
+// Слушатель DOM готовности
 document.addEventListener("DOMContentLoaded", () => {
     init();
     const openCartBtn = document.getElementById('open-cart-btn');
@@ -248,13 +231,30 @@ document.addEventListener("DOMContentLoaded", () => {
         openCartBtn.addEventListener('click', showCart);
     }
     
-    // Также вешаем вызов оформления на обычную кнопку "Оформить заказ" внутри разметки
+    // ВСЯ ЛОГИКА ОФОРМЛЕНИЯ ЗАКАЗА ТЕПЕРЬ НА НАШЕЙ КНОПКЕ ВНУТРИ КОРЗИНЫ
     const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
         checkoutBtn.addEventListener('click', () => {
-            if (cart.length > 0) {
-                window.Telegram.WebApp.MainButton.click();
+            if (cart.length === 0) {
+                alert("Ваша корзина пуста!");
+                return;
             }
+
+            const orderDetails = cart.map(item => `• ${item.name} (${item.vol}ml) x${item.qty}`).join('\n');
+            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const totalPriceString = `${total} ₽`;
+            const user = window.Telegram.WebApp.initDataUnsafe?.user;
+            const customerName = user ? `${user.first_name} ${user.last_name || ''}`.trim() : "Не указано";
+
+            const dataToSend = {
+                type: "order",
+                order: orderDetails,
+                total: totalPriceString,
+                customer: customerName
+            };
+
+            window.Telegram.WebApp.sendData(JSON.stringify(dataToSend));
+            hideCart();
         });
     }
 });
