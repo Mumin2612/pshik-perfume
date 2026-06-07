@@ -1,15 +1,17 @@
 :root {
-    --bg-outer: #1A110B;         /* Почти чёрно-коричневый фон вокруг смартфона */
-    --bg-phone: #2C1E15;         /* Насыщенный тёмно-коричневый фон самого приложения */
-    --card-bg: #E2E4E6;          /* Матовый серебристо-платиновый цвет для карточек */
-    --text-on-card: #1A110B;     /* Глубокий тёмно-коричневый текст для названий на светлом фоне */
-    --text-muted-card: #5A6266;  /* Приглушённый графитовый для описания ароматов */
-    --text-main: #FFFFFF;        /* Белый цвет для главного заголовка приложения */
-    --border-color: #BCC2C4;     /* Границы кнопок внутри карточки */
+    --bg-outer: #0A0A0A;         /* Глубокий чёрный фон вокруг смартфона */
+    --bg-phone: #121212;         /* Элегантный угольно-чёрный фон самого приложения */
+    --card-bg: #1A1A1A;          /* Тёмно-графитовые карточки товаров */
+    --card-border: #2C2C2C;      /* Тонкая рамка вокруг карточек для объема */
     
-    /* Новые благородные акценты вместо голубого */
-    --button-dark: #2C1E15;      /* Фирменный тёмно-коричневый для активных кнопок и цен */
-    --btn-hover-bg: #D0D4D6;     /* Цвет при наведении на серебряные элементы */
+    /* Текст */
+    --text-main: #FFFFFF;        /* Чистый белый для названий товаров */
+    --text-muted: #8E8E93;       /* Серый премиальный для описания ароматов и неактивных элементов */
+    
+    /* Благородное золото/песок со скриншота */
+    --accent-gold: #D4B78F;      /* Фирменный золотистый для заголовка, цен и активных кнопок */
+    --accent-gold-hover: #C2A57D;/* Золотой чуть темнее при наведении/нажатии */
+    --btn-text-dark: #121212;    /* Тёмный текст на золотых кнопках */
 }
 
 /* Сброс базовых отступов */
@@ -34,15 +36,15 @@ body {
     max-width: 480px;
     min-height: 100vh;
     padding: 16px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
 }
 
-/* Мобильный заголовок приложения */
+/* Заголовок PSHIK PERFUME */
 h1 {
-    color: #E2E4E6;
+    color: var(--accent-gold);
     text-align: center;
     font-size: 22px;
-    margin: 10px 0 2px 0;
+    margin: 15px 0 4px 0;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -51,10 +53,36 @@ h1 {
 .subtitle {
     text-align: center;
     font-size: 12px;
-    color: #D0C4BC;
-    margin: 0 0 20px 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    color: var(--text-main);
+    margin: 0 0 15px 0;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* Кнопка Корзины со скриншота */
+.cart-btn-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.cart-button {
+    background-color: var(--accent-gold);
+    color: var(--btn-text-dark);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.cart-button:hover {
+    background-color: var(--accent-gold-hover);
 }
 
 /* Каталог в два ряда */
@@ -65,119 +93,119 @@ h1 {
     margin-top: 15px;
 }
 
-/* Серебристая карточка */
+/* Графитовая карточка товара */
 .card {
     background-color: var(--card-bg);
-    color: var(--text-on-card);
-    border-radius: 14px;
+    color: var(--text-main);
+    border-radius: 12px;
     padding: 12px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: none;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+    border-color: #444444;
 }
 
 /* Картинка товара */
 .card img {
     width: 100%;
     height: 120px;
-    border-radius: 10px;
+    border-radius: 8px;
     object-fit: cover;
     margin-bottom: 10px;
+    background-color: #252525; /* Заглушка, пока нет фото */
+}
+
+/* Название плашки (например, MU #01 Inspiration) */
+.card .product-tag {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    font-weight: 500;
 }
 
 .card h3 {
     font-size: 14px;
-    margin: 0 0 4px 0;
+    margin: 0 0 6px 0;
     font-weight: 700;
-    letter-spacing: 0.3px;
-    color: var(--text-on-card);
+    line-height: 1.2;
 }
 
 .card .desc {
-    color: var(--text-muted-card);
+    color: var(--text-muted);
     font-size: 11px;
     line-height: 1.3;
     margin: 0 0 12px 0;
 }
 
-/* Селектор объема */
+/* Селектор объема (кнопочки 10ml, 15ml...) */
 .volume-selector {
     display: flex;
     gap: 4px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .vol-btn {
     flex: 1;
-    padding: 6px 0;
-    font-size: 11px;
+    padding: 5px 0;
+    font-size: 10px;
     font-weight: 600;
     border-radius: 6px;
-    border: 1px solid var(--border-color);
-    background-color: rgba(0, 0, 0, 0.04);
-    color: #4A5255;
+    border: 1px solid var(--accent-gold);
+    background-color: transparent;
+    color: var(--accent-gold);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .vol-btn:hover {
-    border-color: var(--button-dark);
-    background-color: rgba(0, 0, 0, 0.08);
+    background-color: rgba(212, 183, 143, 0.1);
 }
 
-/* Выбранный объем: стильная белая прозрачность с контрастной темной рамкой и текстом */
+/* Выбранный объем — полностью золотой с темным текстом */
 .vol-btn.active {
-    background-color: rgba(255, 255, 255, 0.65);
-    border-color: var(--button-dark);
-    color: var(--button-dark);
+    background-color: var(--accent-gold);
+    color: var(--btn-text-dark);
     font-weight: 700;
-    transform: scale(1.02);
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
 }
 
-/* Цена — теперь строгая темно-шоколадная */
+/* Цена золотая и крупная */
 .price-tag {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 800;
     margin-bottom: 10px;
-    color: var(--button-dark);
+    color: var(--accent-gold);
 }
 
-/* Кнопка «Купить» — строгий темный контур, идеально сочетается с ценой */
+/* Кнопка «Добавить» / «Купить» — сочная, золотая, прямоугольная скругленная */
 .buy-btn {
     padding: 10px;
     font-size: 13px;
     font-weight: 700;
     border-radius: 8px;
-    border: 1px solid var(--button-dark);
-    background-color: transparent;
-    color: var(--button-dark);
+    border: none;
+    background-color: var(--accent-gold);
+    color: var(--btn-text-dark);
     cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.2s ease;
+    text-transform: none; /* Убираем капс, на скрине обычный текст «Добавить» */
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-/* При наведении кнопка полностью заливается темным, а текст становится белым */
 .buy-btn:hover {
-    background-color: var(--button-dark);
-    color: #FFFFFF;
-    box-shadow: 0 4px 12px rgba(44, 30, 21, 0.15);
+    background-color: var(--accent-gold-hover);
 }
 
 .buy-btn:active, .vol-btn:active {
     transform: scale(0.96);
 }
 
-/* Полноэкранная корзина — под основной темный тон приложения */
+/* Полноэкранная корзина — в темном стиле */
 .overlay {
     display: none;             
     position: fixed;
@@ -190,7 +218,7 @@ h1 {
     background-color: var(--bg-phone);
     z-index: 9999;
     padding: 16px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
     animation: slideUp 0.25s ease-out; 
 }
 
@@ -204,26 +232,26 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    border-bottom: 1px solid #4A3528;
+    border-bottom: 1px solid var(--card-border);
     padding-bottom: 10px;
 }
 
-/* Заголовок в корзине делаем серебристым */
 .overlay-header h2 {
-    color: var(--card-bg);
+    color: var(--accent-gold);
+    margin: 0;
 }
 
 .close-btn {
     background: transparent;
     border: none;
     font-size: 24px;
-    color: #D0C4BC;
+    color: var(--text-muted);
     cursor: pointer;
     transition: color 0.2s ease;
 }
 
 .close-btn:hover {
-    color: var(--card-bg);
+    color: var(--text-main);
 }
 
 .cart-list {
@@ -231,10 +259,21 @@ h1 {
     height: calc(100vh - 200px); 
 }
 
-/* Если у тебя в корзине есть кнопка «Оформить заказ» — она тоже станет стильной серебряной */
+/* Кнопка оформления заказа внутри корзины */
 .order-btn {
-    background-color: var(--card-bg);
-    color: var(--button-dark);
+    background-color: var(--accent-gold);
+    color: var(--btn-text-dark);
     border: none;
     font-weight: 700;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.order-btn:hover {
+    background-color: var(--accent-gold-hover);
 }
